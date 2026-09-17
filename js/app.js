@@ -1,7 +1,7 @@
 // config.js must load before this file — it sets window.API_BASE
 (() => {
   'use strict';
-  const API_BASE = 'https://zcv9k3zonf.execute-api.ap-south-1.amazonaws.com/Def/Love1';
+  const API_BASE = 'https://zcv9k3zonf.execute-api.ap-south-1.amazonaws.com/Def';
   const DRAFT_KEY = 'notes-for-you:draft';
   const $ = (id) => document.getElementById(id);
 
