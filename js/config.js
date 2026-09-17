@@ -3,4 +3,4 @@
 //          URL here. Example:
 //  const API_BASE = 'https://abc123xyz.execute-api.ap-south-1.amazonaws.com/prod';
 // ─────────────────────────────────────────────────────────────
-const API_BASE = 'REPLACE_WITH_YOUR_API_GATEWAY_URL';
+const API_BASE = 'https://xf5vzpgym7.execute-api.ap-south-1.amazonaws.com/default/Love1';
