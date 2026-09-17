@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Her answers</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="lamp" aria-hidden="true"></div>
+  <main id="app">
+    <section class="stage gate" id="gate">
+      <h1 class="display display--sm">Passcode</h1>
+      <p class="lede">Only you get to read these.</p>
+      <div class="field">
+        <input type="password" id="code" placeholder="Enter the passcode" aria-label="Passcode"
+          style="width:100%;background:transparent;border:0;border-bottom:1px solid rgba(233,228,217,.18);color:#e9e4d9;font:inherit;padding:.35rem 0 .7rem" />
+      </div>
+      <p class="warn" id="gate-error" role="alert" style="display:none"></p>
+      <div class="controls">
+        <button class="btn" id="unlock">Unlock</button>
+      </div>
+    </section>
+
+    <section class="stage panel" id="panel" style="display:none">
+      <h1 class="display display--sm" id="heading">What she said</h1>
+      <div class="row">
+        <button class="btn btn--ghost" id="download-btn">Download a copy</button>
+        <button class="btn btn--ghost" id="refresh">Refresh</button>
+      </div>
+      <div id="entries"></div>
+    </section>
+  </main>
+
+<script src="js/config.js"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  let code = '';
+  let questions = [];
+  let lastEntries = [];
+
+  function label(id) {
+    const q = questions.find((x) => x.id === id);
+    return q ? q.prompt : id;
+  }
+
+  function render(entries) {
+    const box = $('entries');
+    box.innerHTML = '';
+    $('heading').textContent = entries.length === 1
+      ? 'What she said'
+      : `What she said — ${entries.length} ${entries.length === 0 ? 'times' : 'times'}`;
+
+    if (!entries.length) {
+      const p = document.createElement('p');
+      p.className = 'empty';
+      p.textContent = 'Nothing yet. Send her the link and leave her alone for ten minutes.';
+      box.appendChild(p);
+      return;
+    }
+
+    entries.forEach((entry) => {
+      const wrap = document.createElement('article');
+      wrap.className = 'entry';
+      const meta = document.createElement('p');
+      meta.className = 'entry-meta';
+      const when = new Date(entry.submittedAt).toLocaleString();
+      meta.textContent = entry.durationSeconds
+        ? `${when} · took ${Math.max(1, Math.round(entry.durationSeconds / 60))} min`
+        : when;
+      wrap.appendChild(meta);
+
+      const dl = document.createElement('dl');
+      dl.className = 'review';
+      Object.entries(entry.answers || {}).forEach(([key, value]) => {
+        const row = document.createElement('div');
+        const dt = document.createElement('dt'); dt.textContent = label(key);
+        const dd = document.createElement('dd'); dd.textContent = String(value);
+        row.append(dt, dd);
+        dl.appendChild(row);
+      });
+      wrap.appendChild(dl);
+      box.appendChild(wrap);
+    });
+  }
+
+  async function load() {
+    const res = await fetch(`${API_BASE}/answers`, {
+      headers: { 'x-admin-code': code }
+    });
+    if (res.status === 401) throw new Error('Wrong passcode.');
+    if (!res.ok) throw new Error('Could not load answers.');
+    const data = await res.json();
+    questions = data.questions || [];
+    lastEntries = data.entries || [];
+    render(lastEntries);
+  }
+
+  async function unlock() {
+    code = $('code').value;
+    const error = $('gate-error');
+    error.style.display = 'none';
+    try {
+      await load();
+      $('gate').style.display = 'none';
+      $('panel').style.display = '';
+    } catch (err) {
+      error.textContent = err.message;
+      error.style.display = '';
+    }
+  }
+
+  $('unlock').addEventListener('click', unlock);
+  $('code').addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
+  $('refresh').addEventListener('click', () => load().catch(() => {}));
+
+  $('download-btn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(lastEntries, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'answers.json';
+    a.click();
+  });
+
+  $('code').focus();
+})();
+</script>
+</body>
+</html>

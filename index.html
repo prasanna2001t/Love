@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A few questions, only for you</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="lamp" aria-hidden="true"></div>
+
+  <main id="app">
+    <section class="stage" id="stage-open">
+      <p class="kicker">Nine questions. No right answers.</p>
+      <h1 class="display">Tell me the things<br /><em>you never say out loud.</em></h1>
+      <p class="lede">Some of these are nice. Some of them are not. Answer the way you would if I were not going to read it — and then remember that I am.</p>
+      <button class="btn" id="begin">Start</button>
+      <p class="note" id="draft-note" style="display:none"></p>
+    </section>
+
+    <section class="stage" id="stage-q" style="display:none">
+      <div class="track" id="track" role="progressbar" aria-label="Progress"></div>
+
+      <div class="q" id="q-body">
+        <p class="count" id="q-count"></p>
+        <h2 class="question" id="q-prompt"></h2>
+        <p class="hint" id="q-hint" style="display:none"></p>
+        <div class="field" id="q-field"></div>
+        <p class="warn" id="q-warn" role="alert" style="display:none"></p>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn--ghost" id="back">Back</button>
+        <button class="btn" id="next">Next</button>
+        <span class="tip">Ctrl + Enter</span>
+      </div>
+    </section>
+
+    <section class="stage" id="stage-review" style="display:none">
+      <h2 class="display display--sm">Read it back before you send it.</h2>
+      <dl class="review" id="review-list"></dl>
+      <p class="warn" id="send-error" role="alert" style="display:none"></p>
+      <div class="controls controls--end">
+        <button class="btn btn--ghost" id="edit">Change something</button>
+        <button class="btn" id="send">Send it to him</button>
+      </div>
+    </section>
+
+    <section class="stage" id="stage-done" style="display:none">
+      <div class="glow" aria-hidden="true"></div>
+      <h2 class="display">It's sent.</h2>
+      <p class="lede">He is reading it right now, probably, with a very serious expression. Thank you for being honest.</p>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

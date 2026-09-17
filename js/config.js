@@ -1,0 +1,6 @@
+// ─────────────────────────────────────────────────────────────
+//  STEP 1: After you deploy the Lambda, paste your API Gateway
+//          URL here. Example:
+//  const API_BASE = 'https://abc123xyz.execute-api.ap-south-1.amazonaws.com/prod';
+// ─────────────────────────────────────────────────────────────
+const API_BASE = 'REPLACE_WITH_YOUR_API_GATEWAY_URL';
