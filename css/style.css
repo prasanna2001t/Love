@@ -179,8 +179,10 @@ body {
   color: white;
   border: none;
   border-radius: 8px;
-  position: absolute; /* Allows smooth movement relative to container */
-  transition: all 0.15s ease;
+  position: absolute;
+  /* Removed transition to eliminate lag */
+  transition: none !important; 
+  will-change: transform;
 }
 
 .track span.done { background: rgba(240, 180, 95, 0.55); }
