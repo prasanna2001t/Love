@@ -288,6 +288,29 @@
       e.returnValue = '';
     }
   });
+  function fleeNoButton() {
+  const noBtn = document.getElementById('noBtn');
+  const container = document.querySelector('.love-question-container');
+
+  // Get boundaries of the container
+  const containerRect = container.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
+
+  // Calculate safe random coordinates within container
+  const maxX = containerRect.width - btnRect.width;
+  const maxY = containerRect.height - btnRect.height;
+
+  const randomX = Math.floor(Math.random() * maxX) - (containerRect.width / 2) + (btnRect.width / 2);
+  const randomY = Math.floor(Math.random() * maxY) - (containerRect.height / 2) + (btnRect.height / 2);
+
+  // Apply new coordinates
+  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+}
+
+function selectYes() {
+  alert("I knew it! ❤️");
+  // You can set a hidden form value or store 'Yes' in your submit payload here
+}
 
   /* ---- bootstrap ---- */
   fetch(`${API_BASE}/questions`, { mode: 'cors' })
