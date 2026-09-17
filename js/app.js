@@ -314,21 +314,19 @@
 })();
 function fleeNoButton() {
   const noBtn = document.getElementById('noBtn');
-  const container = document.querySelector('.love-question-container');
+  
+  // Get viewport dimensions minus button width/height
+  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
-  // Get boundaries of the container
-  const containerRect = container.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+  // Generate instant random coordinates
+  const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+  const randomY = Math.max(20, Math.floor(Math.random() * maxY));
 
-  // Calculate safe random coordinates within container
-  const maxX = containerRect.width - btnRect.width;
-  const maxY = containerRect.height - btnRect.height;
-
-  const randomX = Math.floor(Math.random() * maxX) - (containerRect.width / 2) + (btnRect.width / 2);
-  const randomY = Math.floor(Math.random() * maxY) - (containerRect.height / 2) + (btnRect.height / 2);
-
-  // Apply new coordinates
-  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  // Snap position instantly
+  noBtn.style.position = 'fixed';
+  noBtn.style.left = `${randomX}px`;
+  noBtn.style.top = `${randomY}px`;
 }
 
 function selectYes() {
