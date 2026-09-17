@@ -1,7 +1,7 @@
 // config.js must load before this file — it sets window.API_BASE
 (() => {
   'use strict';
-  const API_BASE = 'https://zcv9k3zonf.execute-api.ap-south-1.amazonaws.com/Def';
+  const API_BASE = window.API_BASE || 'https://zcv9k3zonf.execute-api.ap-south-1.amazonaws.com/Def';
   const DRAFT_KEY = 'notes-for-you:draft';
   const $ = (id) => document.getElementById(id);
 
@@ -238,9 +238,12 @@
     error.style.display = 'none';
 
     try {
-      const res  = await fetch(`${API_BASE}/answers`, {
+      const res = await fetch(`${API_BASE}/answers`, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode:    'cors',
+        headers: { 
+          'Content-Type': 'application/json' 
+        },
         body: JSON.stringify({
           answers,
           durationSeconds: Math.round((Date.now() - startedAt) / 1000)
@@ -251,7 +254,7 @@
       clearDraft();
       show('done');
     } catch (err) {
-      error.textContent   = err.message + ' — Nothing was lost, press send again.';
+      error.textContent   = 'Failed to fetch — Check your connection or CORS settings.';
       error.style.display = '';
       btn.disabled        = false;
       btn.textContent     = 'Send it to him';
@@ -287,7 +290,7 @@
   });
 
   /* ---- bootstrap ---- */
-  fetch(`${API_BASE}/questions`)
+  fetch(`${API_BASE}/questions`, { mode: 'cors' })
     .then((r) => r.json())
     .then((data) => {
       questions = data.questions;
