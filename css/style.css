@@ -407,3 +407,50 @@ a.btn { text-decoration: none; display: inline-block; }
     transition-duration: 0.01ms !important;
   }
 }
+.love-question-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.love-question-container h3 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#yesBtn {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #c0394f, #e05570);
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 1.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 16px rgba(200, 50, 80, 0.4);
+  transition: transform 120ms ease, filter 160ms ease;
+}
+
+#yesBtn:hover { transform: scale(1.08); filter: brightness(1.1); }
+
+#noBtn {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #555, #777);
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 1.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: none !important;
+}
