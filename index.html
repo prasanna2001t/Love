@@ -12,7 +12,12 @@
 </head>
 <body>
   <div class="lamp" aria-hidden="true"></div>
-
+  <div class="hearts" aria-hidden="true">
+  <span class="heart">♥</span><span class="heart">♡</span>
+  <span class="heart">♥</span><span class="heart">♡</span>
+  <span class="heart">♥</span><span class="heart">♡</span>
+  <span class="heart">♥</span><span class="heart">♡</span>
+  <span class="heart">♥</span><span class="heart">♡</span>
   <main id="app">
     <section class="stage" id="stage-open">
       <p class="kicker">My dear Jayyyyaah💕</p>
@@ -64,14 +69,24 @@
       <p class="lede">That idiot loves you . Thank you for being honest.</p>
     </section>
   </main>
-  <div class="hearts" aria-hidden="true">
-  <span class="heart">♥</span><span class="heart">♡</span>
-  <span class="heart">♥</span><span class="heart">♡</span>
-  <span class="heart">♥</span><span class="heart">♡</span>
-  <span class="heart">♥</span><span class="heart">♡</span>
-  <span class="heart">♥</span><span class="heart">♡</span>
+  
 </div
 
   <script src="js/app.js"></script>
+  <script>
+function selectYes() {
+  document.querySelector('.love-question-container h3').textContent = 'I knew it! 💕';
+  document.getElementById('yesBtn').textContent = '😍';
+  document.getElementById('noBtn').style.display = 'none';
+}
+function fleeNoButton() {
+  const btn = document.getElementById('noBtn');
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  btn.style.position = 'fixed';
+  btn.style.left = x + 'px';
+  btn.style.top = y + 'px';
+}
+</script>
 </body>
 </html>
