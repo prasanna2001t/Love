@@ -429,9 +429,9 @@ a.btn { text-decoration: none; display: inline-block; }
 #yesBtn {
   font: inherit;
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #c0394f, #e05570);
-  border: none;
+  color: #fff !important;
+  background: linear-gradient(135deg, #c0394f, #e05570) !important;
+  border: none !important;
   border-radius: 4px;
   padding: 0.7rem 1.8rem;
   cursor: pointer;
@@ -445,9 +445,9 @@ a.btn { text-decoration: none; display: inline-block; }
 #noBtn {
   font: inherit;
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #555, #777);
-  border: none;
+  color: #fff !important;
+  background: linear-gradient(135deg, #555, #777) !important;
+  border: none !important;
   border-radius: 4px;
   padding: 0.7rem 1.8rem;
   cursor: pointer;
