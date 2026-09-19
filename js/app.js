@@ -224,7 +224,10 @@
     { id: 'favouriteMemory', type: 'text',   prompt: 'Which memory of us do you replay the most?',           placeholder: 'That day when...' },
     { id: 'loveLanguage',    type: 'choice', prompt: 'What makes you feel most loved by me?',                options: ['When you tell me', 'When you show up and do things', 'Time where nothing else is competing', 'Being close, physically', 'Small surprises out of nowhere'] },
     { id: 'wish',            type: 'text',   prompt: 'What do you want from me that you have never asked for?', hint: 'This is the one I most want answered.',           placeholder: 'I wish you would...' },
-    { id: 'from',            type: 'text',   prompt: 'Sign off however you like.',                           hint: 'A name, a nickname, an insult. Your call.',          placeholder: 'Yours, ...', short: true }
+    {id:'Rate',              type: 'scale', prompt:'How much fo u rate our stupid bond and relationship',  low: 'Not at all', high: 'Constantly', defaultValue: 4   },
+    {id:'thing', type:'text', prompt : 'what would you like to do with me next? ' , placeholder:'anything'},
+    { id: 'from',            type: 'text',   prompt: 'Sign off however you like.',                           hint: 'A name, a nickname, an insult. Your call.',          placeholder: 'Yours, ...', short: true },
+, 
   ];
 
   buildTrack();
