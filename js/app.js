@@ -203,10 +203,8 @@
   }
 
   $('begin').addEventListener('click', () => { startedAt = Date.now(); show('q'); renderQuestion(); });
-  $('next').addEventListener('click', goNext);
-  $('back').addEventListener('click', goBack);
-  $('edit').addEventListener('click', () => { index = 0; show('q'); renderQuestion(); });
-  $('send').addEventListener('click', send);
+  $('next').addEventListener('click', goNext);$('back').addEventListener('click', goBack);
+  $('edit').addEventListener('click', () => { index = 0; show('q'); renderQuestion(); });$('send').addEventListener('click', send);
 
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && stages.q.style.display !== 'none') {
@@ -214,20 +212,19 @@
     }
   });
 
-  /* ---- hardcoded questions — works without Lambda ---- */
+  /* ---- hardcoded questions ---- */
   questions = [
-    { id: 'love',            type: 'text',   prompt: 'What do you love about me?',                           hint: 'The small stuff counts. Especially the small stuff.', placeholder: 'The way you...', minWords: 3 },
-    { id: 'hate',            type: 'text',   prompt: 'What do you hate about me?',                           hint: 'Be honest. I promise not to sulk. (Much.)',           placeholder: 'Honestly, when you...', minWords: 3 },
+    { id: 'love',            type: 'text',   prompt: 'What do you love about me?',                            hint: 'The small stuff counts. Especially the small stuff.', placeholder: 'The way you...', minWords: 3 },
+    { id: 'hate',            type: 'text',   prompt: 'What do you hate about me?',                            hint: 'Be honest. I promise not to sulk. (Much.)',           placeholder: 'Honestly, when you...', minWords: 3 },
     { id: 'firstThought',    type: 'text',   prompt: 'What did you actually think of me the first time we met?', hint: 'The unedited version, please.',                  placeholder: 'I thought...' },
     { id: 'annoyance',       type: 'scale',  prompt: 'On a normal day, how much do I annoy you?',            low: 'Not at all', high: 'Constantly', defaultValue: 4 },
     { id: 'changeOne',       type: 'text',   prompt: 'If you could change one thing about me, what would it be?', hint: 'One thing only.',                              placeholder: 'I would change...' },
     { id: 'favouriteMemory', type: 'text',   prompt: 'Which memory of us do you replay the most?',           placeholder: 'That day when...' },
     { id: 'loveLanguage',    type: 'choice', prompt: 'What makes you feel most loved by me?',                options: ['When you tell me', 'When you show up and do things', 'Time where nothing else is competing', 'Being close, physically', 'Small surprises out of nowhere'] },
     { id: 'wish',            type: 'text',   prompt: 'What do you want from me that you have never asked for?', hint: 'This is the one I most want answered.',           placeholder: 'I wish you would...' },
-    {id:'Rate',              type: 'scale', prompt:'How much fo u rate our stupid bond and relationship',  low: 'Not at all', high: 'Constantly', defaultValue: 4   },
-    {id:'thing', type:'text', prompt : 'what would you like to do with me next? ' , placeholder:'anything, a place u want to visit, do some thing, anyyything'},
-    { id: 'from',            type: 'text',   prompt: 'Sign off however you like.',                           hint: 'A name, a nickname, an insult. Your call.',          placeholder: 'Yours, ...', short: true },
-, 
+    { id: 'Rate',            type: 'scale',  prompt: 'How much do you rate our stupid bond and relationship?', low: 'Not at all', high: 'Constantly', defaultValue: 4 },
+    { id: 'thing',           type: 'text',   prompt: 'What would you like to do with me next?', placeholder: 'anything, a place u want to visit, do some thing, anyyything' },
+    { id: 'from',            type: 'text',   prompt: 'Sign off however you like.',                            hint: 'A name, a nickname, an insult. Your call.',          placeholder: 'Yours, ...', short: true }
   ];
 
   buildTrack();
@@ -236,7 +233,7 @@
     answers = draft.answers;
     index   = Math.min(draft.index || 0, questions.length - 1);
     const n = $('draft-note');
-    n.textContent  = 'You left an unfinished answer here. It has been kept.';
+    n.textContent   = 'You left an unfinished answer here. It has been kept.';
     n.style.display = '';
   }
 })();
