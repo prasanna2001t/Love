@@ -17,8 +17,10 @@ function selectYes() {
 }
 function fleeNoButton() {
   const btn = document.getElementById('noBtn');
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
+  const maxX = window.innerWidth - btn.offsetWidth - 20;
+  const maxY = window.innerHeight - btn.offsetHeight - 20;
+  const x = Math.max(10, Math.random() * maxX);
+  const y = Math.max(10, Math.random() * maxY);
   btn.style.position = 'fixed';
   btn.style.left = x + 'px';
   btn.style.top = y + 'px';
@@ -78,18 +80,18 @@ function fleeNoButton() {
       </div>
     </section>
 
-    <div class="love-question-container">
-      <h3>Do you love me?</h3>
-      <div class="button-group">
-        <button type="button" id="yesBtn" onclick="selectYes()">Yes! ❤️</button>
-        <button type="button" id="noBtn" onmouseenter="fleeNoButton()" onmousemove="fleeNoButton()">No 😜</button>
-      </div>
-    </div>
-
     <section class="stage" id="stage-done" style="display:none">
       <div class="glow" aria-hidden="true"></div>
       <h2 class="display">It's sent. 💕</h2>
       <p class="lede">That idiot loves you. Thank you for being honest.</p>
+
+      <div class="love-question-container" style="margin-top: 30px;">
+        <h3>Do you love me?</h3>
+        <div class="button-group" style="display: flex; justify-content: center; gap: 20px;">
+          <button type="button" id="yesBtn" onclick="selectYes()">Yes! ❤️</button>
+          <button type="button" id="noBtn" onmouseenter="fleeNoButton()" onmousemove="fleeNoButton()">No 😜</button>
+        </div>
+      </div>
     </section>
 
   </main>
